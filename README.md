@@ -9,7 +9,7 @@ Download the container:
 >docker pull perfsonar/tools
 
 To run the container in the background, so others can test to you:
->docker run -d --net=host perfsonar/tools
+>docker run -d --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro --cap-add SYS_PTRACE --net=host perfsonar/tools
 
 To get an interactive shell on the container, so you can run interactive tests to others:
 

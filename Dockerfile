@@ -1,6 +1,6 @@
 # perfSONAR tools
 
-FROM centos:centos7
+FROM danielneto/systemd:centos7
 MAINTAINER perfSONAR <perfsonar-user@perfsonar.net>
 
 RUN yum -y install \
@@ -10,14 +10,11 @@ RUN yum -y install \
     && yum clean expire-cache \
     && yum -y install \
     perfsonar-tools \
-    supervisor \
     net-tools \
     sysstat \
     tcpdump \
     && yum clean all \
     && rm -rf /var/cache/yum
-
-COPY supervisord.conf /etc/supervisord.conf
 
 # The following ports are used:
 # pScheduler: 443
@@ -29,9 +26,3 @@ COPY supervisord.conf /etc/supervisord.conf
 # iperf3: 5201
 # ntp: 123 (udp)
 EXPOSE 123/udp 443 861 862 5000 5001 5101 5201 5890-5900 8760-9960/tcp 8760-9960/udp 18760-19960/tcp 18760-19960/udp
-
-# add pid directory
-VOLUME /var/run
-
-CMD /usr/bin/supervisord -c /etc/supervisord.conf
-
