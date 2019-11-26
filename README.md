@@ -11,6 +11,9 @@ Download the container:
 To run the container in the background, so others can test to you:
 >docker run -d --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro --cap-add SYS_PTRACE --net=host perfsonar/tools
 
+Run the container using [docker-compose](https://docs.docker.com/compose/):
+>docker-compose up -d tools
+
 To get an interactive shell on the container, so you can run interactive tests to others:
 
 Get the Container ID:
